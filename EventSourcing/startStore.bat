@@ -1,0 +1,1 @@
+start "" "%PROGRAMFILES%\EventStore-OSS-Win-v4.0.3\EventStore.ClusterNode.exe"
