@@ -61,9 +61,6 @@
     <Compile Include="DomainEvents\UserCreatedEvent.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IDependOnEventStore.cs" />
-    <Compile Include="JsonPersistence\AJsonRepository.cs" />
-    <Compile Include="JsonPersistence\AttendanceRepository.cs" />
-    <Compile Include="JsonPersistence\UserRepository.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +125,10 @@
     <ProjectReference Include="..\DomainModel\DomainModel.csproj">
       <Project>{E3576B7C-5017-4FC5-9E9B-BD7B2E5A4831}</Project>
       <Name>DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JsonPersistence\JsonPersistence.csproj">
+      <Project>{1252b25f-34dc-4a26-83b4-8e85161415db}</Project>
+      <Name>JsonPersistence</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

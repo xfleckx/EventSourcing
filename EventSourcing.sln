@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcing", "EventSourcing\EventSourcing.csproj", "{B8A3CA33-091D-4D58-B04B-E5278D91A242}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\DomainModel.csproj", "{E3576B7C-5017-4FC5-9E9B-BD7B2E5A4831}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExperimentalTests", "ExperimentalTests\ExperimentalTests.csproj", "{4DC19286-5D6E-4511-A5D0-D5C24F7B1FEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonPersistence", "JsonPersistence\JsonPersistence.csproj", "{1252B25F-34DC-4A26-83B4-8E85161415DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{E3576B7C-5017-4FC5-9E9B-BD7B2E5A4831}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3576B7C-5017-4FC5-9E9B-BD7B2E5A4831}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3576B7C-5017-4FC5-9E9B-BD7B2E5A4831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DC19286-5D6E-4511-A5D0-D5C24F7B1FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC19286-5D6E-4511-A5D0-D5C24F7B1FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC19286-5D6E-4511-A5D0-D5C24F7B1FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC19286-5D6E-4511-A5D0-D5C24F7B1FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1252B25F-34DC-4A26-83B4-8E85161415DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1252B25F-34DC-4A26-83B4-8E85161415DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1252B25F-34DC-4A26-83B4-8E85161415DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1252B25F-34DC-4A26-83B4-8E85161415DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

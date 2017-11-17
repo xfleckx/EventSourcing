@@ -22,7 +22,7 @@ namespace EventSourcing.UserInterface
         {
             _controller = new AttendanceOverviewController();
 
-            _model = new AttendanceRepository(new FileInfo("workday.repository"));
+            _model = new AttendanceRepository(new FileInfo("attendance.repository"));
 
             InitializeComponent();
         }

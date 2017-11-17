@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DomainModel.Repositories
 {
-    public interface IAttendanceRepository : IRepository<Workday>
+    public interface IAttendanceRepository : IRepository<Attendance.Attendance>
     {
-        IEnumerable<Workday> GetByDate(DateTime date);
-        IEnumerable<Workday> GetByDateRange(DateTime dateStart, DateTime dateEnd);
+        IEnumerable<Attendance.Attendance> GetByDate(DateTime date);
+        IEnumerable<Attendance.Attendance> GetByDateRange(DateTime dateStart, DateTime dateEnd);
 
     }
 }

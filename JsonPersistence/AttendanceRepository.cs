@@ -10,46 +10,46 @@ using Newtonsoft.Json;
 
 namespace EventSourcing.JsonPersistence
 {
-    class AttendanceRepository : AJsonRepository<Workday>, IAttendanceRepository
+    public class AttendanceRepository : AJsonRepository<Attendance>, IAttendanceRepository
     {
         public AttendanceRepository(FileInfo jsonFile)
         {
             InitializeCacheWith(jsonFile);
         }
 
-        public void Add(Workday newEntity)
+        public void Add(Attendance newEntity)
         {
             cache.Add(newEntity);
         }
 
-        public IEnumerable<Workday> GetByDate(DateTime date)
+        public IEnumerable<Attendance> GetByDate(DateTime date)
         {
-            return cache.Where(wd => wd.Date == date);
+            return cache.Where(a => a.Start == date);
         }
 
-        public IEnumerable<Workday> GetByDateRange(DateTime dateStart, DateTime dateEnd)
+        public IEnumerable<Attendance> GetByDateRange(DateTime dateStart, DateTime dateEnd)
         {
-            return cache.Where(wd => 
-            wd.Date >= dateStart.Date && 
-            wd.Date <= dateEnd.Date);
+            return cache.Where(a => 
+            a.Start >= dateStart.Date && 
+            a.Start <= dateEnd.Date);
         }
 
-        public Workday GetById(Guid id)
+        public Attendance GetById(Guid id)
         {
-            return cache.Find(wd => wd.Guid == id);
+            return cache.Find(a => a.Guid == id);
         }
 
-        public Workday GetById(Guid id, int version)
+        public Attendance GetById(Guid id, int version)
         {
-            return cache.Find(wd => wd.Guid == id);
+            return cache.Find(a => a.Guid == id);
         }
 
-        public void Delete(Workday entity)
+        public void Delete(Attendance entity)
         {
             cache.Remove(entity);
         }
 
-        public void Update(Workday entity)
+        public void Update(Attendance entity)
         {
             if (!cache.Any(e => e.Guid == entity.Guid))
             {
@@ -57,7 +57,7 @@ namespace EventSourcing.JsonPersistence
             }
             else
             {
-                var index = cache.FindIndex(wd => wd.Guid == entity.Guid);
+                var index = cache.FindIndex(a => a.Guid == entity.Guid);
 
                 cache[index] = entity;
             }
