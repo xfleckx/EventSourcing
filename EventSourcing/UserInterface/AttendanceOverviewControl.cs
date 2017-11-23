@@ -10,31 +10,54 @@ using System.Windows.Forms;
 using DomainModel.Repositories;
 using EventSourcing.JsonPersistence;
 using System.IO;
+using DomainModel.Users;
 
 namespace EventSourcing.UserInterface
 {
     public partial class AttendanceOverviewControl : UserControl
     {
-        private AttendanceOverviewController _controller;
-        private IAttendanceRepository _model;
+        private AttendanceOverviewController controller;
+        private IAttendanceRepository attendanceRepository;
+        private IUserRepository userRepository;
 
         public AttendanceOverviewControl()
         {
-            _controller = new AttendanceOverviewController();
+            controller = new AttendanceOverviewController();
 
-            _model = new AttendanceRepository(new FileInfo("attendance.repository"));
+            attendanceRepository = RepositoryManagement.Get<IAttendanceRepository>();
+            userRepository = RepositoryManagement.Get<IUserRepository>();
 
             InitializeComponent();
         }
 
         private void AttendanceOverviewControl_Load(object sender, EventArgs e)
         {
-
+            if(!DesignMode)
+                comboBox.DataSource = userRepository.All;
         }
 
         private void buttonManuallyCommit_Click(object sender, EventArgs e)
         {
+            //var form = new AddCheckIn();
 
+            //form.Controller.CheckInCommited += controller.CheckInCommited;
+            //form.Controller.CheckOutCommited += controller.CheckOutCommited;
+
+            //form.Show();
+        }
+
+        private void comboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+
+            var user = comboBox.SelectedValue as User;
+
+            if (user == null)
+                return;
+
+            var attendances = attendanceRepository.GetAllForUser(user.Guid);
+
+            dataGridViewOverview.DataSource = attendances;
         }
     }
 }

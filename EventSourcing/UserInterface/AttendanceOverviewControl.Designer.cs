@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dataGridViewOverview = new System.Windows.Forms.DataGridView();
-            this.UserColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AttendanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HourBalanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelLowerHalf = new System.Windows.Forms.Panel();
+            this.comboBox = new System.Windows.Forms.ComboBox();
             this.buttonManuallyCommit = new System.Windows.Forms.Button();
-            this.comboBoxReason = new System.Windows.Forms.ComboBox();
-            this.comboBoxMode = new System.Windows.Forms.ComboBox();
-            this.comboBoxUser = new System.Windows.Forms.ComboBox();
             this.buttonCommitAttendanceChange = new System.Windows.Forms.Button();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.attendanceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOverview)).BeginInit();
             this.panelLowerHalf.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.attendanceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer
@@ -67,48 +67,38 @@
             // 
             // dataGridViewOverview
             // 
+            this.dataGridViewOverview.AllowUserToAddRows = false;
             this.dataGridViewOverview.AllowUserToDeleteRows = false;
+            this.dataGridViewOverview.AutoGenerateColumns = false;
             this.dataGridViewOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewOverview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.UserColumn,
-            this.AttendanceColumn,
-            this.HourBalanceColumn});
+            this.dataGridViewOverview.DataSource = this.attendanceBindingSource;
             this.dataGridViewOverview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewOverview.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewOverview.Name = "dataGridViewOverview";
             this.dataGridViewOverview.Size = new System.Drawing.Size(566, 244);
             this.dataGridViewOverview.TabIndex = 1;
             // 
-            // UserColumn
-            // 
-            this.UserColumn.HeaderText = "User";
-            this.UserColumn.Name = "UserColumn";
-            this.UserColumn.ReadOnly = true;
-            // 
-            // AttendanceColumn
-            // 
-            this.AttendanceColumn.HeaderText = "Current Month";
-            this.AttendanceColumn.Name = "AttendanceColumn";
-            this.AttendanceColumn.ReadOnly = true;
-            // 
-            // HourBalanceColumn
-            // 
-            this.HourBalanceColumn.HeaderText = "Balance";
-            this.HourBalanceColumn.Name = "HourBalanceColumn";
-            this.HourBalanceColumn.ReadOnly = true;
-            // 
             // panelLowerHalf
             // 
+            this.panelLowerHalf.Controls.Add(this.comboBox);
             this.panelLowerHalf.Controls.Add(this.buttonManuallyCommit);
-            this.panelLowerHalf.Controls.Add(this.comboBoxReason);
-            this.panelLowerHalf.Controls.Add(this.comboBoxMode);
-            this.panelLowerHalf.Controls.Add(this.comboBoxUser);
             this.panelLowerHalf.Controls.Add(this.buttonCommitAttendanceChange);
             this.panelLowerHalf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelLowerHalf.Location = new System.Drawing.Point(0, 0);
             this.panelLowerHalf.Name = "panelLowerHalf";
             this.panelLowerHalf.Size = new System.Drawing.Size(566, 31);
             this.panelLowerHalf.TabIndex = 0;
+            // 
+            // comboBox
+            // 
+            this.comboBox.DataSource = this.userBindingSource;
+            this.comboBox.DisplayMember = "Nick";
+            this.comboBox.FormattingEnabled = true;
+            this.comboBox.Location = new System.Drawing.Point(4, 4);
+            this.comboBox.Name = "comboBox";
+            this.comboBox.Size = new System.Drawing.Size(152, 21);
+            this.comboBox.TabIndex = 5;
+            this.comboBox.SelectedValueChanged += new System.EventHandler(this.comboBox_SelectedValueChanged);
             // 
             // buttonManuallyCommit
             // 
@@ -120,30 +110,6 @@
             this.buttonManuallyCommit.UseVisualStyleBackColor = true;
             this.buttonManuallyCommit.Click += new System.EventHandler(this.buttonManuallyCommit_Click);
             // 
-            // comboBoxReason
-            // 
-            this.comboBoxReason.FormattingEnabled = true;
-            this.comboBoxReason.Location = new System.Drawing.Point(232, 3);
-            this.comboBoxReason.Name = "comboBoxReason";
-            this.comboBoxReason.Size = new System.Drawing.Size(154, 21);
-            this.comboBoxReason.TabIndex = 3;
-            // 
-            // comboBoxMode
-            // 
-            this.comboBoxMode.FormattingEnabled = true;
-            this.comboBoxMode.Location = new System.Drawing.Point(131, 3);
-            this.comboBoxMode.Name = "comboBoxMode";
-            this.comboBoxMode.Size = new System.Drawing.Size(95, 21);
-            this.comboBoxMode.TabIndex = 2;
-            // 
-            // comboBoxUser
-            // 
-            this.comboBoxUser.FormattingEnabled = true;
-            this.comboBoxUser.Location = new System.Drawing.Point(4, 3);
-            this.comboBoxUser.Name = "comboBoxUser";
-            this.comboBoxUser.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxUser.TabIndex = 1;
-            // 
             // buttonCommitAttendanceChange
             // 
             this.buttonCommitAttendanceChange.Location = new System.Drawing.Point(392, 3);
@@ -152,6 +118,14 @@
             this.buttonCommitAttendanceChange.TabIndex = 0;
             this.buttonCommitAttendanceChange.Text = "Commit";
             this.buttonCommitAttendanceChange.UseVisualStyleBackColor = true;
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(DomainModel.Users.User);
+            // 
+            // attendanceBindingSource
+            // 
+            this.attendanceBindingSource.DataSource = typeof(DomainModel.Attendance.Attendance);
             // 
             // AttendanceOverviewControl
             // 
@@ -167,6 +141,8 @@
             this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOverview)).EndInit();
             this.panelLowerHalf.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.attendanceBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -175,14 +151,11 @@
 
         private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.DataGridView dataGridViewOverview;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AttendanceColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HourBalanceColumn;
         private System.Windows.Forms.Panel panelLowerHalf;
-        private System.Windows.Forms.ComboBox comboBoxReason;
-        private System.Windows.Forms.ComboBox comboBoxMode;
-        private System.Windows.Forms.ComboBox comboBoxUser;
         private System.Windows.Forms.Button buttonCommitAttendanceChange;
         private System.Windows.Forms.Button buttonManuallyCommit;
+        private System.Windows.Forms.ComboBox comboBox;
+        private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.BindingSource attendanceBindingSource;
     }
 }

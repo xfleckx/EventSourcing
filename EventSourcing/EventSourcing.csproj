@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="ACommand.cs" />
     <Compile Include="AReactor.cs" />
+    <Compile Include="Commands\CheckInForAttendance.cs" />
+    <Compile Include="Commands\CheckOutOnAttendance.cs" />
     <Compile Include="Commands\CreateUserCommand.cs" />
     <Compile Include="Commands\DemoCommand.cs" />
     <Compile Include="DomainEvents\ADomainEvent.cs" />
@@ -78,6 +80,12 @@
     <Compile Include="UserInterface\AddUserForm.Designer.cs">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\AttendanceChangeUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\AttendanceChangeUserControl.Designer.cs">
+      <DependentUpon>AttendanceChangeUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\AttendanceOverviewControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -85,7 +93,16 @@
       <DependentUpon>AttendanceOverviewControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserInterface\AttendanceOverviewController.cs" />
+    <Compile Include="UserInterface\CheckInController.cs" />
+    <Compile Include="UserInterface\RepositoryManagement.cs" />
+    <Compile Include="UserInterface\UserControlUserOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\UserControlUserOverview.Designer.cs">
+      <DependentUpon>UserControlUserOverview.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\UserManagementContextMenuController.cs" />
+    <Compile Include="UserInterface\UserOverviewController.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,10 +118,18 @@
     <EmbeddedResource Include="UserInterface\AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\AttendanceChangeUserControl.resx">
+      <DependentUpon>AttendanceChangeUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserInterface\AttendanceOverviewControl.resx">
       <DependentUpon>AttendanceOverviewControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\UserControlUserOverview.resx">
+      <DependentUpon>UserControlUserOverview.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\DomainModel.Attendance.Attendance.datasource" />
+    <None Include="Properties\DataSources\DomainModel.Users.User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

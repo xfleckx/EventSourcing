@@ -1,20 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EventSourcing.DomainEvents
 {
     public class UserCreatedEvent : ADomainEvent
     {
-        private string text;
-        private Guid guid;
+        private string name;
 
-        public UserCreatedEvent(string text, Guid guid)
+        private string nick;
+
+        private Guid userId;
+
+
+        public UserCreatedEvent(string name, string nick, Guid guid)
         {
-            this.text = text;
-            this.guid = guid;
+            this.Name = name;
+            this.Nick = nick;
+            this.UserId = guid;
         }
+
+        public string Nick { get => nick; set => nick = value; }
+        
+        public string Name { get => name; set => name = value; }
+        public Guid UserId { get => userId; set => userId = value; }
     }
 }

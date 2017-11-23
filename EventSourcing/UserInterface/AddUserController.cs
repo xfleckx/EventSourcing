@@ -24,10 +24,10 @@ namespace EventSourcing.UserInterface
 
         internal void CreateNewUser(string expectedName)
         {
-            var command = new CreateUserCommand(expectedName, _guid);
+            //var command = new CreateUserCommand(expectedName, _guid);
 
-            // reset the controller for the next call
-            _guid = Guid.NewGuid();
+            //// reset the controller for the next call
+            //_guid = Guid.NewGuid();
         }
     }
 }

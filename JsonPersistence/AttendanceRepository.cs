@@ -12,6 +12,8 @@ namespace EventSourcing.JsonPersistence
 {
     public class AttendanceRepository : AJsonRepository<Attendance>, IAttendanceRepository
     {
+        public IEnumerable<Attendance> All => cache;
+
         public AttendanceRepository(FileInfo jsonFile)
         {
             InitializeCacheWith(jsonFile);
@@ -62,5 +64,11 @@ namespace EventSourcing.JsonPersistence
                 cache[index] = entity;
             }
         }
+
+        public IEnumerable<Attendance> GetAllForUser(Guid userId)
+        {
+            return cache.Where(a => a.UserId == userId);
+        }
+        
     }
 }

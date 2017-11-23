@@ -22,6 +22,9 @@ namespace EventSourcing.JsonPersistence
                 var content = fileReader.ReadToEnd();
                 cache = JsonConvert.DeserializeObject<List<T>>(content);
             }
+
+            if (cache == null)
+                cache = new List<T>();
         }
 
         public void Save()

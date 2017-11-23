@@ -85,7 +85,7 @@ namespace EventSourcing
         {
             var demo = new DemoCommand("fizz", "buzz");
 
-            demo.OnCommandSuccessfullApplied += ForwardToEventStore;
+            demo.CommandSuccessfullApplied += ForwardToEventStore;
 
             demo.Execute();
         }
@@ -131,8 +131,8 @@ namespace EventSourcing
 
         private void renderEventCount(int count)
         {
-            if (InvokeRequired)
-                Invoke(new Action(() => { labelEventCount.Text = $"Count of Demo Commands: {count}"; }));
+            //if (InvokeRequired)
+            //    Invoke(new Action(() => { labelEventCount.Text = $"Count of Demo Commands: {count}"; }));
                 
         }
 
@@ -165,6 +165,7 @@ namespace EventSourcing
 
             form.Show();
         }
+        
     }
     
 }

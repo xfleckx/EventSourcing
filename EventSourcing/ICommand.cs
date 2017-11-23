@@ -10,7 +10,10 @@ namespace EventSourcing
     public interface ICommand<TDomainEvent>
     {
         void Execute();
-        event Action<TDomainEvent> OnCommandSuccessfullApplied;
+        
+        bool Validate(Action<string> validationFailed);
+
+        event Action<TDomainEvent> CommandSuccessfullApplied;
 
     }
 }

@@ -34,5 +34,10 @@ namespace EventSourcing.Commands
 
             Raise(@event);
         }
+
+        public override bool Validate(Action<string> ValidationFailed)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

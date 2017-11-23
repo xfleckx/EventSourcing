@@ -5,11 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DomainModel.Users;
+using System.IO;
 
 namespace EventSourcing.JsonPersistence
 {
     public class UserRepository : AJsonRepository<User>, IUserRepository
     {
+        public UserRepository(FileInfo fileInfo)
+        {
+            this.InitializeCacheWith(fileInfo);
+        }
+
+        public IEnumerable<User> All => cache;
+
         public void Add(User newEntity)
         {
             if (cache.Any(e => e.Guid == newEntity.Guid))
@@ -44,6 +52,16 @@ namespace EventSourcing.JsonPersistence
             return cache.Find(u => u.Guid == id);
         }
 
+        public bool NameAvailable(string text)
+        {
+            return !cache.Any(u => u.Name == text);
+        }
+
+        public bool NickAvailable(string text)
+        {
+            return !cache.Any(u => u.Nick == text);
+        }
+        
         public void Update(User entity)
         {
             if (!cache.Any(e => e.Guid == entity.Guid))

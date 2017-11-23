@@ -9,5 +9,8 @@ namespace DomainModel.Repositories
 {
     public interface IUserRepository : IRepository<User>
     {
+        bool NameAvailable(string text);
+
+        bool NickAvailable(string text);
     }
 }

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DomainModel.Attendance.Events
 {
-    public class AttendanceEnded : AttendenceChanged
+    public class AttendanceEnded
     {
+        public Guid User;
+        public string Comment;
+        public DateTime TimeStamp;
     }
 }

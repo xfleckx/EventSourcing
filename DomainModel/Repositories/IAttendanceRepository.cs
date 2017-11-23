@@ -11,6 +11,6 @@ namespace DomainModel.Repositories
     {
         IEnumerable<Attendance.Attendance> GetByDate(DateTime date);
         IEnumerable<Attendance.Attendance> GetByDateRange(DateTime dateStart, DateTime dateEnd);
-
+        IEnumerable<Attendance.Attendance> GetAllForUser(Guid userId);
     }
 }

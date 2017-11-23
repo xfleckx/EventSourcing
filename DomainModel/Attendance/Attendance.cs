@@ -1,9 +1,5 @@
 ﻿using DomainModel.Users;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainModel.Attendance
 {
@@ -11,8 +7,13 @@ namespace DomainModel.Attendance
     public class Attendance
     {
         public Guid Guid;
-        public User UserId;
+        public Guid UserId;
         public DateTime Start;
         public DateTime End;
+
+        public TimeSpan GetDuration()
+        {
+            return  End - Start;
+        }
     }
 }

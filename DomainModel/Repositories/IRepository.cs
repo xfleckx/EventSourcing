@@ -15,6 +15,8 @@ namespace DomainModel.Repositories
         T GetById(Guid id);
         T GetById(Guid id, int version);
 
+        IEnumerable<T> All { get; }
+
         void Delete(T entity);
         // not sure what the update headers part means
         //void Save(T aggregate, Guid commitId, Action<IDictionary<string, object>> updateHeaders);
