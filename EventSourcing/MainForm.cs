@@ -90,7 +90,7 @@ namespace EventSourcing
             demo.Execute();
         }
 
-        private void ForwardToEventStore(DemoCommandApplied obj)
+        private void ForwardToEventStore(ADomainEvent obj)
         {
             if (_connection == null)
             {
@@ -106,18 +106,30 @@ namespace EventSourcing
         {
             var eventAsJson = JsonConvert.SerializeObject(obj);
 
+            var domainEventType = obj.EventTypeName;
+
+            var domainStream = obj.DomainStreamName;
+
             var jsonAsBytes = Encoding.UTF8.GetBytes(eventAsJson);
+            
+            var type = obj.GetType();
 
-            var metaDataAsBytes = Encoding.UTF8.GetBytes("some metadata");
+            var metaData = new EventMetaData() { 
+                TypeIdentifier = type.GetType().FullName,
+                AssemblyVersion = type.AssemblyQualifiedName
+            };
 
-            var @event = new EventData(Guid.NewGuid(), 
-                                        obj.GetType().Name, 
+            var metaDataAsJson = JsonConvert.SerializeObject(metaData);
+
+            var metaDataAsBytes = Encoding.UTF8.GetBytes(metaDataAsJson);
+            
+            var @event = new EventData(obj.Guid, 
+                                        domainEventType, 
                                         true,
                                         jsonAsBytes,
                                         metaDataAsBytes);
-
-            // where to define which stream is used?
-            _connection.AppendToStreamAsync("test-stream",
+            
+            _connection.AppendToStreamAsync(domainStream,
                                            ExpectedVersion.Any, 
                                            @event).Wait();
         }

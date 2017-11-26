@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EventSourcing.DomainEvents
 {
@@ -21,6 +17,11 @@ namespace EventSourcing.DomainEvents
             }
         }
 
-        public DateTime Created;
+        public abstract string EventTypeName { get; }
+
+        public abstract string DomainStreamName { get; }
+
+        public DateTime Created { get; }
+        
     }
 }
