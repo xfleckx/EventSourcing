@@ -61,6 +61,7 @@
     <Compile Include="DomainEvents\DemoCommandApplied.cs" />
     <Compile Include="DomainEvents\IDomainEvent.cs" />
     <Compile Include="DomainEvents\UserCreatedEvent.cs" />
+    <Compile Include="EventMetaData.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IDependOnEventStore.cs" />
     <Compile Include="MainForm.cs">
