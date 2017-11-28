@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExperimentalTests", "Experi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonPersistence", "JsonPersistence\JsonPersistence.csproj", "{1252B25F-34DC-4A26-83B4-8E85161415DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcedInvoice", "EventSourcedInvoice\EventSourcedInvoice.csproj", "{0E0BE478-0BF8-484C-8C69-AB2770F8EF85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcedInvoicesTests", "EventSourcedInvoicesTests\EventSourcedInvoicesTests.csproj", "{CF3F6538-F7CE-41E8-918C-51F4FC610E6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{1252B25F-34DC-4A26-83B4-8E85161415DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1252B25F-34DC-4A26-83B4-8E85161415DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1252B25F-34DC-4A26-83B4-8E85161415DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E0BE478-0BF8-484C-8C69-AB2770F8EF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E0BE478-0BF8-484C-8C69-AB2770F8EF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E0BE478-0BF8-484C-8C69-AB2770F8EF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E0BE478-0BF8-484C-8C69-AB2770F8EF85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF3F6538-F7CE-41E8-918C-51F4FC610E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF3F6538-F7CE-41E8-918C-51F4FC610E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF3F6538-F7CE-41E8-918C-51F4FC610E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF3F6538-F7CE-41E8-918C-51F4FC610E6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
