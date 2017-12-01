@@ -10,14 +10,20 @@ namespace EventSourcedInvoice
 {
     public class InvoiceProcess
     {
-        private ICollection<Type> availableCommands = new List<Type>();
+        public int ID { get; set; }
+
+        public string Customer { get; set; }
+
+        private IDictionary<Type, Type> knownCommands = new Dictionary<Type, Type>();
+        private IList<Type> availableCommands = new List<Type>();
         
         [JsonProperty]
         private Queue<ADomainEvent> protocol = new Queue<ADomainEvent>();
 
         public InvoiceProcess()
         {
-            availableCommands.Add(typeof(CreateInvoice));
+            knownCommands.Add(typeof(InvoiceCreated), typeof(CreateInvoice));
+            knownCommands.Add(typeof(CustomerAdded), typeof(AddCustomer));
         }
 
         public T Get<T>() where T : class, new()
@@ -25,7 +31,7 @@ namespace EventSourcedInvoice
             var expectedType = typeof(T);
             try
             {
-                var targetType = availableCommands.Single(t => t == expectedType);
+                var targetType = knownCommands.Values.Single(t => t == expectedType);
             }
             catch (Exception)
             {
@@ -45,7 +51,7 @@ namespace EventSourcedInvoice
             {
                 var expectedType = item.GetType();
 
-                var commandType = expectedType;
+                var commandType = knownCommands[expectedType];
 
                 var command = Activator.CreateInstance(commandType, item);
 
@@ -67,30 +73,26 @@ namespace EventSourcedInvoice
             
         }
 
-        private void DenyCommand<T>()
-        {
-            var expectedType = typeof(T);
-
-            if (!availableCommands.Any(t => t == expectedType))
-                availableCommands.Remove(expectedType);
-        }
-
         private void AllowCommand<T>()
         {
             var expectedType = typeof(T);
 
-            if (!availableCommands.Any(t => t == expectedType))
+            if (!availableCommands.Contains(expectedType))
                 availableCommands.Add(expectedType);
+        }
+
+        private void DenyCommand<T>()
+        {
+            var expectedType = typeof(T);
+
+            if (!availableCommands.Contains(expectedType))
+                availableCommands.Remove(expectedType);
         }
 
         private JsonSerializerSettings serializerSettîng = new JsonSerializerSettings() {
             TypeNameHandling = TypeNameHandling.Objects,
             Formatting = Formatting.Indented
         };
-
-        public int ID { get; set; }
-
-        public string Customer { get; set; }
         
         public void PersistTo(FileInfo targetFile)
         {

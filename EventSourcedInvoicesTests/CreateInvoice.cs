@@ -52,6 +52,8 @@ namespace EventSourcedInvoicesTests
         {
             var state = InvoiceProcess.LoadFrom(new System.IO.FileInfo("testCustomer.json"));
 
+            state.ReplayAllEvents();
+
             Assert.IsTrue(state.ID == 123, "ID missmatch");
             Assert.IsTrue(state.Customer == "Bob", "Customer missmatch");
         }

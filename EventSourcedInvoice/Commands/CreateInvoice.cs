@@ -17,7 +17,7 @@ namespace EventSourcedInvoice.Commands
         public CreateInvoice(InvoiceCreated fromEvent)
         {
             NewID = fromEvent.NewID;
-            //isReplay = true;
+            isReplay = true;
         }
 
         public void ApplyTo(InvoiceProcess state)

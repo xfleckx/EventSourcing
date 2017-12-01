@@ -17,6 +17,6 @@ namespace EventSourcedInvoice.Events
             this.TimeStamp = dateTime;
         }
 
-        public int NewID { get => newID; private set => newID = value; }
+        public int NewID { get => newID; set => newID = value; }
     }
 }
