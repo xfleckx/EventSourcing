@@ -43,14 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ACommand.cs" />
     <Compile Include="Commands\AddCustomer.cs" />
+    <Compile Include="Commands\AddItem.cs" />
     <Compile Include="Commands\CreateInvoice.cs" />
+    <Compile Include="DomainModel\InvoiceItem.cs" />
     <Compile Include="EventContainer.cs" />
     <Compile Include="Events\ADomainEvent.cs" />
     <Compile Include="Events\CustomerAdded.cs" />
     <Compile Include="Events\InvoiceCreated.cs" />
-    <Compile Include="ICommand.cs" />
-    <Compile Include="InvoiceProcess.cs" />
+    <Compile Include="Events\ItemAdded.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="DomainModel\InvoiceProcess.cs" />
     <Compile Include="KnownTypesBinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="CreateInvoice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AddItems.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

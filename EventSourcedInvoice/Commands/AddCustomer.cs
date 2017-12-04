@@ -1,8 +1,10 @@
-﻿using System;
+﻿using EventSourcedInvoice.Commands;
+using EventSourcedInvoice.DomainModel;
+using System;
 
 namespace EventSourcedInvoice
 {
-    public class AddCustomer : ICommand
+    public class AddCustomer : ACommand
     {
         public string CustomersName { get; set; }
 
@@ -13,14 +15,18 @@ namespace EventSourcedInvoice
 
         public AddCustomer(CustomerAdded fromEvent)
         {
+            isReplay = true;
             CustomersName = fromEvent.Name;
         }
 
-        public void ApplyTo(InvoiceProcess state)
+        public override void ApplyTo(InvoiceProcess state)
         {
             state.Customer = CustomersName;
 
-            state.Append(new CustomerAdded(CustomersName, DateTime.Now));
+            var evt = new CustomerAdded(CustomersName, DateTime.Now);
+            
+            if(!isReplay)
+                state.Append(evt);
         }
     }
 }

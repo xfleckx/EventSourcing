@@ -6,15 +6,25 @@ using Newtonsoft.Json;
 using EventSourcedInvoice.Commands;
 using EventSourcedInvoice.Events;
 
-namespace EventSourcedInvoice
+namespace EventSourcedInvoice.DomainModel
 {
     public class InvoiceProcess
     {
+        public static IDictionary<Type, Type> knownCommands = new Dictionary<Type, Type>()
+        {
+            { typeof(InvoiceCreated), typeof(CreateInvoice) },
+            { typeof(CustomerAdded), typeof(AddCustomer) },
+            { typeof(ItemAdded), typeof(AddItem) }
+        };
+        
         public int ID { get; set; }
 
         public string Customer { get; set; }
 
-        private IDictionary<Type, Type> knownCommands = new Dictionary<Type, Type>();
+        [JsonProperty]
+        public ICollection<InvoiceItem> Items { get; set; }
+        public float Brutto { get; internal set; }
+
         private IList<Type> availableCommands = new List<Type>();
         
         [JsonProperty]
@@ -22,8 +32,8 @@ namespace EventSourcedInvoice
 
         public InvoiceProcess()
         {
-            knownCommands.Add(typeof(InvoiceCreated), typeof(CreateInvoice));
-            knownCommands.Add(typeof(CustomerAdded), typeof(AddCustomer));
+            Items = new List<InvoiceItem>();
+
         }
 
         public T Get<T>() where T : class, new()
@@ -98,12 +108,7 @@ namespace EventSourcedInvoice
         {
             using (var writer = new StreamWriter(targetFile.FullName))
             {
-                var binder = new KnownTypesBinder() {
-
-                    KnownTypes = protocol.Select(i => i.GetType()).ToList()
-                };
-
-                binder.KnownTypes.Add(typeof(InvoiceProcess));
+                KnownTypesBinder binder = CreateBinder();
 
                 serializerSettîng.SerializationBinder = binder;
 
@@ -115,16 +120,25 @@ namespace EventSourcedInvoice
             }
         }
 
+        private static KnownTypesBinder CreateBinder()
+        {
+            var binder = new KnownTypesBinder()
+            {
+                KnownTypes = knownCommands.Keys.ToList()
+            };
+
+            binder.KnownTypes.Add(typeof(InvoiceProcess));
+            binder.KnownTypes.Add(typeof(InvoiceItem));
+            return binder;
+        }
+
         public static InvoiceProcess LoadFrom(FileInfo targetFile)
         {
             var serializerSettîng = new JsonSerializerSettings();
 
             serializerSettîng.TypeNameHandling = TypeNameHandling.Objects;
-
-            serializerSettîng.SerializationBinder = new KnownTypesBinder()
-            {
-                KnownTypes = new List<Type>() { typeof(InvoiceProcess), typeof(CustomerAdded), typeof(InvoiceCreated) }
-            };
+            
+            serializerSettîng.SerializationBinder = CreateBinder();
 
             using (var reader = new StreamReader(targetFile.FullName))
             {

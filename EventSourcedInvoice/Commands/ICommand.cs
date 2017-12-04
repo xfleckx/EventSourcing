@@ -1,4 +1,6 @@
-﻿namespace EventSourcedInvoice
+﻿using EventSourcedInvoice.DomainModel;
+
+namespace EventSourcedInvoice
 {
     public interface ICommand
     {
