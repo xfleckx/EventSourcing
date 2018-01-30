@@ -22,5 +22,9 @@ namespace EventSourcing.DomainEvents
         
         public string Name { get => name; set => name = value; }
         public Guid UserId { get => userId; set => userId = value; }
+
+        public override string EventTypeName => throw new NotImplementedException();
+
+        public override string DomainStreamName => throw new NotImplementedException();
     }
 }

@@ -47,6 +47,7 @@
     <Compile Include="Commands\AddCustomer.cs" />
     <Compile Include="Commands\AddItem.cs" />
     <Compile Include="Commands\CreateInvoice.cs" />
+    <Compile Include="DomainModel\IInvoiceRepository.cs" />
     <Compile Include="DomainModel\InvoiceItem.cs" />
     <Compile Include="EventContainer.cs" />
     <Compile Include="Events\ADomainEvent.cs" />

@@ -26,7 +26,6 @@ namespace EventSourcing.Commands
 
             var @event = new DemoCommandApplied()
             {
-                Created = DateTime.Now,
                 DomainName = name,
                 DomainValue = randomInt,
                 DomainMessage = "A random value"

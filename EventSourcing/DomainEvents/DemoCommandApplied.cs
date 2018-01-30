@@ -13,5 +13,9 @@ namespace EventSourcing.DomainEvents
         public int DomainValue;
 
         public string DomainName;
+
+        public override string EventTypeName => throw new NotImplementedException();
+
+        public override string DomainStreamName => throw new NotImplementedException();
     }
 }
